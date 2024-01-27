@@ -1,25 +1,10 @@
 # Neovim Config
-Personal neovim configs used for C++ developmet.
+Personal neovim configs using lazy.nvim.
 
-### Packages
-Using packer as the package manager.
-- packer
-- telescope
-- treesiter
-- undotree
-- vim-fugitive
-- kanagawa
-- lsp-zero
-- mason
-- nvim-tree
-- presence
-- nvim-colorizer
-- autoclose
-
-### Structure
 ```
 ├── after
 │   └── plugin
+│       ├── cokeline.lua
 │       ├── colors.lua
 │       ├── fugitive.lua
 │       ├── lsp.lua
@@ -28,13 +13,10 @@ Using packer as the package manager.
 │       ├── treesitter.lua
 │       └── undotree.lua
 ├── init.lua
-├── lua
-│   └── vid
-│       ├── init.lua
-│       ├── packer.lua
-│       ├── remap.lua
-│       └── set.lua
-├── plugin
-│   └── packer_compiled.lua
-└── README.md
+├── lazy-lock.json
+└── lua
+    └── vid
+        ├── init.lua
+        ├── remap.lua
+        └── set.lua
 ```
