@@ -59,6 +59,7 @@ require("lazy").setup({
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
     },
+
     {
         "kawre/leetcode.nvim",
         build = ":TSUpdate html",
@@ -76,6 +77,7 @@ require("lazy").setup({
             -- configuration goes here
         },
     },
+
     {
         "willothy/nvim-cokeline",
         dependencies = {
@@ -84,9 +86,24 @@ require("lazy").setup({
             "stevearc/resession.nvim"       -- Optional, for persistent history
         },
         config = true
-    }
+    },
+
+    {
+        "akinsho/toggleterm.nvim", version = "*", opts = {
+
+        }
+    },
+
+    {
+        "aurum77/live-server.nvim",
+        run = function()
+            require"live_server.util".install()
+        end,
+        cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
+    },
 })
 
 -- Load Plugins
 require("autoclose").setup()
 require("colorizer").setup()
+require("toggleterm").setup()
