@@ -17,11 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
-        "rebelot/kanagawa.nvim",
-        priority = 999,
-        config = function()
-            vim.cmd('colorscheme kanagawa-dragon')
-        end
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {style = "storm"},
     },
 
     {
@@ -35,15 +34,18 @@ require("lazy").setup({
 
     "tpope/vim-fugitive",
     
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
     'neovim/nvim-lspconfig',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/nvim-cmp',
     'L3MON4D3/LuaSnip',
+    'github/copilot.vim',
 
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
+    'mfussenegger/nvim-lint',
+    'mhartington/formatter.nvim',
+    'VonHeikemen/lsp-zero.nvim',
 
     "nvim-tree/nvim-tree.lua",
     "nvim-tree/nvim-web-devicons",
@@ -51,7 +53,6 @@ require("lazy").setup({
     "andweeb/presence.nvim",
     "norcalli/nvim-colorizer.lua",
     "m4xshen/autoclose.nvim",
-    "github/copilot.vim",
 
     {
         "iamcco/markdown-preview.nvim",
@@ -101,9 +102,11 @@ require("lazy").setup({
         end,
         cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
     },
+    "christoomey/vim-tmux-navigator",
 })
 
 -- Load Plugins
 require("autoclose").setup()
 require("colorizer").setup()
 require("toggleterm").setup()
+require("tokyonight").setup()
