@@ -16,6 +16,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    -------------------------------------------------------------
+    -- Style ----------------------------------------------------
     {
         "folke/tokyonight.nvim",
         lazy = false,
@@ -24,89 +26,105 @@ require("lazy").setup({
     },
 
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.5',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("lualine").setup({
+                options = { 
+                    disabled_filetypes = {"NvimTree", "packer"},
+                },
+            })
+        end
+    },
+
+    -------------------------------------------------------------
+    -- IDE ------------------------------------------------------
+    { 
+        "danymat/neogen", 
+        config = true,
+    },
+
+
+    -------------------------------------------------------------
+    -- Navigation -----------------------------------------------
+    {
+        "nvim-telescope/telescope.nvim", tag = "0.1.5",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
+
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" }
     },
     
-    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-    
-    "mbbill/undotree",
+    {
+        "willothy/nvim-cokeline",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "stevearc/resession.nvim"
+        },
+        config = true
+    },
 
-    "tpope/vim-fugitive",
+
+    -------------------------------------------------------------
+    -- Complition -----------------------------------------------
+    {
+        "nvim-treesitter/nvim-treesitter", 
+        build = ":TSUpdate"
+    },
     
-    'neovim/nvim-lspconfig',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/nvim-cmp',
-    'L3MON4D3/LuaSnip',
-    'github/copilot.vim',
+    "neovim/nvim-lspconfig",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/nvim-cmp",
+    "L3MON4D3/LuaSnip",
 
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-    'mfussenegger/nvim-lint',
-    'mhartington/formatter.nvim',
-    'VonHeikemen/lsp-zero.nvim',
+    "mfussenegger/nvim-lint",
+    "mhartington/formatter.nvim",
+    "VonHeikemen/lsp-zero.nvim",
+    "github/copilot.vim",
 
-    "nvim-tree/nvim-tree.lua",
-    "nvim-tree/nvim-web-devicons",
 
-    "andweeb/presence.nvim",
-    "norcalli/nvim-colorizer.lua",
-    "m4xshen/autoclose.nvim",
-
+    -------------------------------------------------------------
+    -- Writing --------------------------------------------------
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
     },
-
+    
     {
-        "kawre/leetcode.nvim",
-        build = ":TSUpdate html",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/plenary.nvim", -- required by telescope
-            "MunifTanjim/nui.nvim",
-
-            -- optional
-            "nvim-treesitter/nvim-treesitter",
-            "rcarriga/nvim-notify",
-            "nvim-tree/nvim-web-devicons",
-        },
-        opts = {
-            -- configuration goes here
-        },
+        "lervag/vimtex",
+        lazy = false,     -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+        -- VimTeX configuration goes here, e.g.
+        vim.g.vimtex_view_method = "sioyek"
+        vim.g.vimtex_compiler_method = "latexrun"
+        end
+    
     },
+    
+    "savq/paq-nvim",
+    "frabjous/knap",
 
-    {
-        "willothy/nvim-cokeline",
-        dependencies = {
-            "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
-            "nvim-tree/nvim-web-devicons", -- If you want devicons
-            "stevearc/resession.nvim"       -- Optional, for persistent history
-        },
-        config = true
-    },
+    -------------------------------------------------------------
+    -- Other ----------------------------------------------------
 
-    {
-        "akinsho/toggleterm.nvim", version = "*", opts = {
-
-        }
-    },
-
-    {
-        "aurum77/live-server.nvim",
-        run = function()
-            require"live_server.util".install()
-        end,
-        cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
-    },
-    "christoomey/vim-tmux-navigator",
+    "tpope/vim-fugitive",
+    "mbbill/undotree",
+    "andweeb/presence.nvim",
+    "m4xshen/autoclose.nvim",
+    "norcalli/nvim-colorizer.lua",
+    --"stevearc/vim-arduino",             -- Arduino IDE
 })
 
 -- Load Plugins
 require("autoclose").setup()
 require("colorizer").setup()
-require("toggleterm").setup()
 require("tokyonight").setup()
